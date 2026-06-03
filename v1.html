@@ -76,6 +76,9 @@
   .nav-links a:hover{color:var(--clay)}
   .nav-cta{display:flex;align-items:center;gap:16px}
   .menu-toggle{display:none;background:none;border:none;color:var(--ink);cursor:pointer}
+  .menu-toggle i{width:24px;height:24px}
+  .menu-toggle .icon-close{display:none}
+  .nav-links .nav-mobile-cta{display:none}
 
   /* ---------- Language switch ---------- */
   .lang-switch{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex-shrink:0}
@@ -228,7 +231,24 @@
     .wrap{padding:0 20px}
     .nav-links{display:none}
     .menu-toggle{display:inline-flex}
-    .nav-cta .btn-ghost{display:none}
+    .nav-cta .btn{display:none}
+    header.open .menu-toggle .icon-open{display:none}
+    header.open .menu-toggle .icon-close{display:inline-flex}
+    header.open .nav-links{
+      display:flex;flex-direction:column;align-items:stretch;gap:0;
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--paper);border-bottom:1px solid var(--line);
+      box-shadow:0 22px 44px -26px rgba(33,28,22,.45);
+      padding:8px 20px 20px;
+    }
+    header.open .nav-links a{
+      padding:15px 2px;font-size:16px;color:var(--ink);
+      border-bottom:1px solid var(--line);
+    }
+    header.open .nav-links .nav-mobile-cta{
+      display:inline-flex;justify-content:center;color:#fff;
+      margin-top:16px;padding:14px 26px;border-bottom:none;
+    }
     .pad{padding:74px 0}
     .pad-sm{padding:58px 0}
     .approach-grid,.dest-grid,.quotes,.steps{grid-template-columns:1fr}
@@ -253,6 +273,7 @@
       <a href="#approach" data-lang-th="แนวทางของเรา" data-lang-en="Our Approach">แนวทางของเรา</a>
       <a href="#journeys" data-lang-th="ขั้นตอนการเดินทาง" data-lang-en="How It Works">ขั้นตอนการเดินทาง</a>
       <a href="#stories" data-lang-th="เรื่องเล่าจากนักเดินทาง" data-lang-en="Traveller Stories">เรื่องเล่าจากนักเดินทาง</a>
+      <a href="#destinations" class="btn btn-primary nav-mobile-cta"><span data-lang-th="วางแผนการเดินทาง" data-lang-en="Plan a Journey">วางแผนการเดินทาง</span> <i data-lucide="arrow-right"></i></a>
     </nav>
     <div class="nav-cta">
       <div class="lang-switch" role="group" aria-label="Language">
@@ -261,7 +282,7 @@
       </div>
       <a href="#stories" class="btn btn-ghost"><span data-lang-th="เข้าสู่ระบบ" data-lang-en="Sign In">เข้าสู่ระบบ</span></a>
       <a href="#destinations" class="btn btn-primary"><span data-lang-th="วางแผนการเดินทาง" data-lang-en="Plan a Journey">วางแผนการเดินทาง</span> <i data-lucide="arrow-right"></i></a>
-      <button class="menu-toggle" aria-label="Open menu"><i data-lucide="menu"></i></button>
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu" class="icon-open"></i><i data-lucide="x" class="icon-close"></i></button>
     </div>
   </div>
 </header>
@@ -684,6 +705,24 @@
     var saved = 'th';
     try { saved = localStorage.getItem('site-lang') || 'th'; } catch (e) {}
     setLang(saved);
+  })();
+
+  (function(){
+    var header = document.querySelector('header');
+    var toggle = document.querySelector('.menu-toggle');
+    if (!header || !toggle) return;
+    toggle.addEventListener('click', function(){
+      var open = header.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    header.querySelectorAll('.nav-links a').forEach(function(a){
+      a.addEventListener('click', function(){
+        header.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+      });
+    });
   })();
 
   lucide.createIcons();
