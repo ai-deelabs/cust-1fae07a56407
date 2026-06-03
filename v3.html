@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DeeLabs Tour — Curated Journeys for the Curious Traveler</title>
+<title>DeeLabs Tour — การเดินทางที่คัดสรรเพื่อนักเดินทางผู้ใฝ่รู้</title>
+<meta name="description" content="DeeLabs Tour ออกแบบการเดินทางแบบกลุ่มเล็กที่นำทางโดยผู้เชี่ยวชาญสู่สถานที่อันน่าทึ่งที่สุดในโลก — การเดินทางที่พิถีพิถันเพื่อนักเดินทางผู้ใฝ่รู้อย่างแท้จริง" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root {
     --paper: #f4efe7;
@@ -31,6 +33,8 @@
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   h1, h2, h3, h4 {
@@ -39,6 +43,19 @@
     line-height: 1.08;
     letter-spacing: -0.01em;
   }
+
+  /* ---------- THAI TYPOGRAPHY ---------- */
+  html[lang="th"] body { font-family: 'Noto Sans Thai', 'Sukhumvit Set', sans-serif; }
+  html[lang="th"] h1,
+  html[lang="th"] h2,
+  html[lang="th"] h3,
+  html[lang="th"] h4 { font-family: 'Noto Serif Thai', 'Sukhumvit Set', serif; line-height: 1.3; }
+  html[lang="th"] .overline { font-family: 'Noto Sans Thai', 'Sukhumvit Set', sans-serif; }
+  html[lang="th"] blockquote,
+  html[lang="th"] .marquee-track { font-family: 'Noto Serif Thai', 'Sukhumvit Set', serif; }
+  html[lang="th"] blockquote { line-height: 1.5; }
+  html[lang="th"] .card-foot .price small,
+  html[lang="th"] .foot-col h4 { font-family: 'Noto Sans Thai', 'Sukhumvit Set', sans-serif; }
 
   a { color: inherit; text-decoration: none; }
   img { display: block; width: 100%; }
@@ -140,6 +157,28 @@
     background: none; border: none; cursor: pointer; color: var(--ink);
   }
   .menu-btn i { width: 26px; height: 26px; }
+
+  /* ---------- LANG SWITCH ---------- */
+  .lang-switch {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .lang-switch button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    padding: .42rem .66rem;
+    color: var(--ink-soft);
+    transition: background .2s ease, color .2s ease;
+  }
+  .lang-switch button + button { border-left: 1px solid var(--line); }
+  .lang-switch button.active { background: var(--ink); color: var(--cream); }
 
   /* ---------- HERO ---------- */
   .hero {
@@ -504,22 +543,26 @@
   <div class="wrap nav">
     <a href="#" class="logo">Dee<span>Labs</span><small>Tour</small></a>
     <ul class="nav-links">
-      <li><a href="#destinations">Destinations</a></li>
-      <li><a href="#about">Our Approach</a></li>
-      <li><a href="#why">Why Us</a></li>
-      <li><a href="#stories">Stories</a></li>
+      <li><a href="#destinations" data-lang-th="จุดหมายปลายทาง" data-lang-en="Destinations">จุดหมายปลายทาง</a></li>
+      <li><a href="#about" data-lang-th="แนวทางของเรา" data-lang-en="Our Approach">แนวทางของเรา</a></li>
+      <li><a href="#why" data-lang-th="ทำไมต้องเรา" data-lang-en="Why Us">ทำไมต้องเรา</a></li>
+      <li><a href="#stories" data-lang-th="เรื่องเล่า" data-lang-en="Stories">เรื่องเล่า</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="#contact" class="btn btn-solid"><i data-lucide="compass"></i> Plan a Journey</a>
+      <div class="lang-switch" id="langSwitch" role="group" aria-label="Language switcher">
+        <button type="button" data-lang="th">TH</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a href="#contact" class="btn btn-solid"><i data-lucide="compass"></i> <span data-lang-th="วางแผนการเดินทาง" data-lang-en="Plan a Journey">วางแผนการเดินทาง</span></a>
       <button class="menu-btn" id="menuBtn" aria-label="Open menu"><i data-lucide="menu"></i></button>
     </div>
   </div>
   <div class="wrap mobile-menu" id="mobileMenu">
-    <a href="#destinations">Destinations</a>
-    <a href="#about">Our Approach</a>
-    <a href="#why">Why Us</a>
-    <a href="#stories">Stories</a>
-    <a href="#contact">Plan a Journey</a>
+    <a href="#destinations" data-lang-th="จุดหมายปลายทาง" data-lang-en="Destinations">จุดหมายปลายทาง</a>
+    <a href="#about" data-lang-th="แนวทางของเรา" data-lang-en="Our Approach">แนวทางของเรา</a>
+    <a href="#why" data-lang-th="ทำไมต้องเรา" data-lang-en="Why Us">ทำไมต้องเรา</a>
+    <a href="#stories" data-lang-th="เรื่องเล่า" data-lang-en="Stories">เรื่องเล่า</a>
+    <a href="#contact" data-lang-th="วางแผนการเดินทาง" data-lang-en="Plan a Journey">วางแผนการเดินทาง</a>
   </div>
 </header>
 
@@ -527,17 +570,17 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="reveal">
-      <span class="overline">Curated travel since 2009</span>
-      <h1>Journeys made for the <em>genuinely</em> curious.</h1>
-      <p class="hero-lead">DeeLabs Tour designs small-group expeditions to the world's most extraordinary places — thoughtfully planned, expertly guided, and yours to remember for a lifetime.</p>
+      <span class="overline" data-lang-th="คัดสรรการเดินทางตั้งแต่ปี 2009" data-lang-en="Curated travel since 2009">คัดสรรการเดินทางตั้งแต่ปี 2009</span>
+      <h1><span data-lang-th="การเดินทางที่ออกแบบเพื่อผู้ที่" data-lang-en="Journeys made for the ">การเดินทางที่ออกแบบเพื่อผู้ที่</span><em data-lang-th="ใฝ่รู้" data-lang-en="genuinely">ใฝ่รู้</em><span data-lang-th="อย่างแท้จริง" data-lang-en=" curious.">อย่างแท้จริง</span></h1>
+      <p class="hero-lead" data-lang-th="DeeLabs Tour ออกแบบการเดินทางแบบกลุ่มเล็กสู่สถานที่อันน่าทึ่งที่สุดในโลก — วางแผนอย่างพิถีพิถัน นำทางโดยผู้เชี่ยวชาญ และเป็นความทรงจำที่คุณจะจดจำไปตลอดชีวิต" data-lang-en="DeeLabs Tour designs small-group expeditions to the world's most extraordinary places — thoughtfully planned, expertly guided, and yours to remember for a lifetime.">DeeLabs Tour ออกแบบการเดินทางแบบกลุ่มเล็กสู่สถานที่อันน่าทึ่งที่สุดในโลก — วางแผนอย่างพิถีพิถัน นำทางโดยผู้เชี่ยวชาญ และเป็นความทรงจำที่คุณจะจดจำไปตลอดชีวิต</p>
       <div class="hero-actions">
-        <a href="#destinations" class="btn btn-solid"><i data-lucide="map"></i> Explore Destinations</a>
-        <a href="#about" class="btn btn-ghost"><i data-lucide="play"></i> How We Travel</a>
+        <a href="#destinations" class="btn btn-solid"><i data-lucide="map"></i> <span data-lang-th="สำรวจจุดหมายปลายทาง" data-lang-en="Explore Destinations">สำรวจจุดหมายปลายทาง</span></a>
+        <a href="#about" class="btn btn-ghost"><i data-lucide="play"></i> <span data-lang-th="วิธีการเดินทางของเรา" data-lang-en="How We Travel">วิธีการเดินทางของเรา</span></a>
       </div>
       <div class="hero-stats">
-        <div><span class="num">62</span><span class="lbl">Countries Charted</span></div>
-        <div><span class="num">14k+</span><span class="lbl">Travelers Guided</span></div>
-        <div><span class="num">4.9</span><span class="lbl">Average Rating</span></div>
+        <div><span class="num">62</span><span class="lbl" data-lang-th="ประเทศที่สำรวจ" data-lang-en="Countries Charted">ประเทศที่สำรวจ</span></div>
+        <div><span class="num">14k+</span><span class="lbl" data-lang-th="นักเดินทางที่ดูแล" data-lang-en="Travelers Guided">นักเดินทางที่ดูแล</span></div>
+        <div><span class="num">4.9</span><span class="lbl" data-lang-th="คะแนนเฉลี่ย" data-lang-en="Average Rating">คะแนนเฉลี่ย</span></div>
       </div>
     </div>
     <div class="hero-figure reveal">
@@ -545,8 +588,8 @@
         <img src="https://images.unsplash.com/photo-1604223190546-a43e4c7f29d7?w=900&h=1100&fit=crop" alt="Hiker overlooking a vast mountain landscape" />
       </div>
       <div class="hero-badge">
-        <span class="overline">Next departure</span>
-        <p>Patagonia Traverse — seats remaining for autumn 2026.</p>
+        <span class="overline" data-lang-th="การเดินทางครั้งถัดไป" data-lang-en="Next departure">การเดินทางครั้งถัดไป</span>
+        <p data-lang-th="เส้นทางข้ามปาตาโกเนีย — เหลือที่นั่งสำหรับฤดูใบไม้ร่วง 2026" data-lang-en="Patagonia Traverse — seats remaining for autumn 2026.">เส้นทางข้ามปาตาโกเนีย — เหลือที่นั่งสำหรับฤดูใบไม้ร่วง 2026</p>
       </div>
     </div>
   </div>
@@ -554,10 +597,10 @@
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
       <span>
-        Andes &amp; Patagonia <i data-lucide="mountain"></i> Coastal Greece <i data-lucide="waves"></i> Saharan Crossings <i data-lucide="sun"></i> Temple Trails of Asia <i data-lucide="landmark"></i> Nordic Fjords <i data-lucide="snowflake"></i>
+        <span data-lang-th="เทือกเขาแอนดีสและปาตาโกเนีย" data-lang-en="Andes &amp; Patagonia">เทือกเขาแอนดีสและปาตาโกเนีย</span> <i data-lucide="mountain"></i> <span data-lang-th="ชายฝั่งกรีซ" data-lang-en="Coastal Greece">ชายฝั่งกรีซ</span> <i data-lucide="waves"></i> <span data-lang-th="ข้ามทะเลทรายซาฮารา" data-lang-en="Saharan Crossings">ข้ามทะเลทรายซาฮารา</span> <i data-lucide="sun"></i> <span data-lang-th="เส้นทางวัดแห่งเอเชีย" data-lang-en="Temple Trails of Asia">เส้นทางวัดแห่งเอเชีย</span> <i data-lucide="landmark"></i> <span data-lang-th="ฟยอร์ดนอร์ดิก" data-lang-en="Nordic Fjords">ฟยอร์ดนอร์ดิก</span> <i data-lucide="snowflake"></i>
       </span>
       <span>
-        Andes &amp; Patagonia <i data-lucide="mountain"></i> Coastal Greece <i data-lucide="waves"></i> Saharan Crossings <i data-lucide="sun"></i> Temple Trails of Asia <i data-lucide="landmark"></i> Nordic Fjords <i data-lucide="snowflake"></i>
+        <span data-lang-th="เทือกเขาแอนดีสและปาตาโกเนีย" data-lang-en="Andes &amp; Patagonia">เทือกเขาแอนดีสและปาตาโกเนีย</span> <i data-lucide="mountain"></i> <span data-lang-th="ชายฝั่งกรีซ" data-lang-en="Coastal Greece">ชายฝั่งกรีซ</span> <i data-lucide="waves"></i> <span data-lang-th="ข้ามทะเลทรายซาฮารา" data-lang-en="Saharan Crossings">ข้ามทะเลทรายซาฮารา</span> <i data-lucide="sun"></i> <span data-lang-th="เส้นทางวัดแห่งเอเชีย" data-lang-en="Temple Trails of Asia">เส้นทางวัดแห่งเอเชีย</span> <i data-lucide="landmark"></i> <span data-lang-th="ฟยอร์ดนอร์ดิก" data-lang-en="Nordic Fjords">ฟยอร์ดนอร์ดิก</span> <i data-lucide="snowflake"></i>
       </span>
     </div>
   </div>
@@ -572,22 +615,22 @@
       <img src="https://images.unsplash.com/photo-1535262412227-85541e910204?w=600&h=400&fit=crop" alt="Tropical island from above" />
     </div>
     <div class="about-text reveal">
-      <span class="overline">Our approach</span>
-      <h2>We don't sell destinations. We design experiences.</h2>
-      <p>Every DeeLabs itinerary begins with a question: what makes a place worth the journey? Our travel designers spend months on the ground, building relationships with local guides, hosts, and communities long before the first traveler arrives.</p>
-      <p>The result is travel with intention — unhurried, well-paced, and rich with the kind of moments you can't book online.</p>
+      <span class="overline" data-lang-th="แนวทางของเรา" data-lang-en="Our approach">แนวทางของเรา</span>
+      <h2 data-lang-th="เราไม่ได้ขายจุดหมายปลายทาง เราออกแบบประสบการณ์" data-lang-en="We don't sell destinations. We design experiences.">เราไม่ได้ขายจุดหมายปลายทาง เราออกแบบประสบการณ์</h2>
+      <p data-lang-th="ทุกแผนการเดินทางของ DeeLabs เริ่มต้นด้วยคำถามว่า อะไรทำให้สถานที่หนึ่งคุ้มค่าแก่การเดินทาง? นักออกแบบการเดินทางของเราใช้เวลาหลายเดือนในพื้นที่จริง เพื่อสร้างความสัมพันธ์กับไกด์ท้องถิ่น เจ้าบ้าน และชุมชน นานก่อนที่นักเดินทางคนแรกจะมาถึง" data-lang-en="Every DeeLabs itinerary begins with a question: what makes a place worth the journey? Our travel designers spend months on the ground, building relationships with local guides, hosts, and communities long before the first traveler arrives.">ทุกแผนการเดินทางของ DeeLabs เริ่มต้นด้วยคำถามว่า อะไรทำให้สถานที่หนึ่งคุ้มค่าแก่การเดินทาง? นักออกแบบการเดินทางของเราใช้เวลาหลายเดือนในพื้นที่จริง เพื่อสร้างความสัมพันธ์กับไกด์ท้องถิ่น เจ้าบ้าน และชุมชน นานก่อนที่นักเดินทางคนแรกจะมาถึง</p>
+      <p data-lang-th="ผลลัพธ์คือการเดินทางที่มีความหมาย — ไม่เร่งรีบ จังหวะพอดี และเต็มไปด้วยช่วงเวลาที่คุณไม่อาจจองผ่านออนไลน์ได้" data-lang-en="The result is travel with intention — unhurried, well-paced, and rich with the kind of moments you can't book online.">ผลลัพธ์คือการเดินทางที่มีความหมาย — ไม่เร่งรีบ จังหวะพอดี และเต็มไปด้วยช่วงเวลาที่คุณไม่อาจจองผ่านออนไลน์ได้</p>
       <ul class="about-points">
         <li>
           <span class="ico"><i data-lucide="users-round"></i></span>
-          <div><h4>Small groups, always</h4><span>A maximum of twelve travelers per departure.</span></div>
+          <div><h4 data-lang-th="กลุ่มเล็กเสมอ" data-lang-en="Small groups, always">กลุ่มเล็กเสมอ</h4><span data-lang-th="สูงสุดสิบสองคนต่อการเดินทางหนึ่งครั้ง" data-lang-en="A maximum of twelve travelers per departure.">สูงสุดสิบสองคนต่อการเดินทางหนึ่งครั้ง</span></div>
         </li>
         <li>
           <span class="ico"><i data-lucide="route"></i></span>
-          <div><h4>Local-led routes</h4><span>Guided by people who call each place home.</span></div>
+          <div><h4 data-lang-th="เส้นทางนำโดยคนท้องถิ่น" data-lang-en="Local-led routes">เส้นทางนำโดยคนท้องถิ่น</h4><span data-lang-th="นำทางโดยผู้คนที่เรียกสถานที่นั้นว่าบ้าน" data-lang-en="Guided by people who call each place home.">นำทางโดยผู้คนที่เรียกสถานที่นั้นว่าบ้าน</span></div>
         </li>
         <li>
           <span class="ico"><i data-lucide="leaf"></i></span>
-          <div><h4>Travel that gives back</h4><span>A share of every trip supports local conservation.</span></div>
+          <div><h4 data-lang-th="การเดินทางที่ตอบแทนสังคม" data-lang-en="Travel that gives back">การเดินทางที่ตอบแทนสังคม</h4><span data-lang-th="ส่วนหนึ่งของทุกทริปสนับสนุนการอนุรักษ์ท้องถิ่น" data-lang-en="A share of every trip supports local conservation.">ส่วนหนึ่งของทุกทริปสนับสนุนการอนุรักษ์ท้องถิ่น</span></div>
         </li>
       </ul>
     </div>
@@ -599,26 +642,26 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="overline">Featured journeys</span>
-        <h2>Signature expeditions, ready when you are.</h2>
+        <span class="overline" data-lang-th="การเดินทางแนะนำ" data-lang-en="Featured journeys">การเดินทางแนะนำ</span>
+        <h2 data-lang-th="การเดินทางสุดพิเศษ พร้อมเมื่อคุณพร้อม" data-lang-en="Signature expeditions, ready when you are.">การเดินทางสุดพิเศษ พร้อมเมื่อคุณพร้อม</h2>
       </div>
-      <p>Hand-built itineraries across five continents — each with fixed departures and a dedicated travel designer.</p>
+      <p data-lang-th="แผนการเดินทางที่สร้างขึ้นอย่างพิถีพิถันทั่วห้าทวีป — แต่ละเส้นทางมีกำหนดการแน่นอนและนักออกแบบการเดินทางเฉพาะตัว" data-lang-en="Hand-built itineraries across five continents — each with fixed departures and a dedicated travel designer.">แผนการเดินทางที่สร้างขึ้นอย่างพิถีพิถันทั่วห้าทวีป — แต่ละเส้นทางมีกำหนดการแน่นอนและนักออกแบบการเดินทางเฉพาะตัว</p>
     </div>
 
     <div class="pkg-grid">
       <article class="card reveal">
         <div class="photo">
           <img src="https://images.unsplash.com/photo-1611080402167-ed75bae6df32?w=800&h=600&fit=crop" alt="Rocky mountain peaks under a clear sky" />
-          <span class="tag">Adventure</span>
-          <span class="duration"><i data-lucide="calendar-days"></i> 11 Days</span>
+          <span class="tag" data-lang-th="ผจญภัย" data-lang-en="Adventure">ผจญภัย</span>
+          <span class="duration"><i data-lucide="calendar-days"></i> <span data-lang-th="11 วัน" data-lang-en="11 Days">11 วัน</span></span>
         </div>
         <div class="card-body">
-          <span class="loc"><i data-lucide="map-pin"></i> Patagonia, Argentina &amp; Chile</span>
-          <h3>The Patagonia Traverse</h3>
-          <p>Trek granite spires, drift past glaciers, and end each day beneath some of the clearest skies on earth.</p>
+          <span class="loc"><i data-lucide="map-pin"></i> <span data-lang-th="ปาตาโกเนีย อาร์เจนตินาและชิลี" data-lang-en="Patagonia, Argentina &amp; Chile">ปาตาโกเนีย อาร์เจนตินาและชิลี</span></span>
+          <h3 data-lang-th="เส้นทางข้ามปาตาโกเนีย" data-lang-en="The Patagonia Traverse">เส้นทางข้ามปาตาโกเนีย</h3>
+          <p data-lang-th="เดินป่าผ่านยอดเขาหินแกรนิต ล่องผ่านธารน้ำแข็ง และจบแต่ละวันใต้ท้องฟ้าที่ใสที่สุดแห่งหนึ่งของโลก" data-lang-en="Trek granite spires, drift past glaciers, and end each day beneath some of the clearest skies on earth.">เดินป่าผ่านยอดเขาหินแกรนิต ล่องผ่านธารน้ำแข็ง และจบแต่ละวันใต้ท้องฟ้าที่ใสที่สุดแห่งหนึ่งของโลก</p>
           <div class="card-foot">
-            <div class="price">$4,280 <small>per traveler</small></div>
-            <a href="#contact">View itinerary <i data-lucide="arrow-right"></i></a>
+            <div class="price">$4,280 <small data-lang-th="ต่อท่าน" data-lang-en="per traveler">ต่อท่าน</small></div>
+            <a href="#contact"><span data-lang-th="ดูแผนการเดินทาง" data-lang-en="View itinerary">ดูแผนการเดินทาง</span> <i data-lucide="arrow-right"></i></a>
           </div>
         </div>
       </article>
@@ -626,16 +669,16 @@
       <article class="card reveal">
         <div class="photo">
           <img src="https://images.unsplash.com/photo-1672841828459-bc913fdcd995?w=800&h=600&fit=crop" alt="Tropical beach with palm trees and clear water" />
-          <span class="tag">Coastal</span>
-          <span class="duration"><i data-lucide="calendar-days"></i> 8 Days</span>
+          <span class="tag" data-lang-th="ชายฝั่ง" data-lang-en="Coastal">ชายฝั่ง</span>
+          <span class="duration"><i data-lucide="calendar-days"></i> <span data-lang-th="8 วัน" data-lang-en="8 Days">8 วัน</span></span>
         </div>
         <div class="card-body">
-          <span class="loc"><i data-lucide="map-pin"></i> Cyclades, Greece</span>
-          <h3>Aegean Island Hopping</h3>
-          <p>Sail between sun-bleached villages, hidden coves, and harbor tavernas across the Greek isles.</p>
+          <span class="loc"><i data-lucide="map-pin"></i> <span data-lang-th="หมู่เกาะไซคลาดีส กรีซ" data-lang-en="Cyclades, Greece">หมู่เกาะไซคลาดีส กรีซ</span></span>
+          <h3 data-lang-th="ท่องเกาะทะเลอีเจียน" data-lang-en="Aegean Island Hopping">ท่องเกาะทะเลอีเจียน</h3>
+          <p data-lang-th="ล่องเรือระหว่างหมู่บ้านริมทะเล อ่าวเล็กที่ซ่อนตัว และร้านอาหารริมท่าเรือทั่วหมู่เกาะกรีก" data-lang-en="Sail between sun-bleached villages, hidden coves, and harbor tavernas across the Greek isles.">ล่องเรือระหว่างหมู่บ้านริมทะเล อ่าวเล็กที่ซ่อนตัว และร้านอาหารริมท่าเรือทั่วหมู่เกาะกรีก</p>
           <div class="card-foot">
-            <div class="price">$3,150 <small>per traveler</small></div>
-            <a href="#contact">View itinerary <i data-lucide="arrow-right"></i></a>
+            <div class="price">$3,150 <small data-lang-th="ต่อท่าน" data-lang-en="per traveler">ต่อท่าน</small></div>
+            <a href="#contact"><span data-lang-th="ดูแผนการเดินทาง" data-lang-en="View itinerary">ดูแผนการเดินทาง</span> <i data-lucide="arrow-right"></i></a>
           </div>
         </div>
       </article>
@@ -643,16 +686,16 @@
       <article class="card reveal">
         <div class="photo">
           <img src="https://images.unsplash.com/photo-1638024510305-c36fcc0bf3b1?w=800&h=600&fit=crop" alt="Vast desert sand dunes under a blue sky" />
-          <span class="tag">Expedition</span>
-          <span class="duration"><i data-lucide="calendar-days"></i> 9 Days</span>
+          <span class="tag" data-lang-th="การสำรวจ" data-lang-en="Expedition">การสำรวจ</span>
+          <span class="duration"><i data-lucide="calendar-days"></i> <span data-lang-th="9 วัน" data-lang-en="9 Days">9 วัน</span></span>
         </div>
         <div class="card-body">
-          <span class="loc"><i data-lucide="map-pin"></i> Merzouga, Morocco</span>
-          <h3>Saharan Crossing</h3>
-          <p>Cross golden dunes by camel and 4x4, then sleep under a desert sky stitched with stars.</p>
+          <span class="loc"><i data-lucide="map-pin"></i> <span data-lang-th="เมอร์ซูกา โมร็อกโก" data-lang-en="Merzouga, Morocco">เมอร์ซูกา โมร็อกโก</span></span>
+          <h3 data-lang-th="ข้ามทะเลทรายซาฮารา" data-lang-en="Saharan Crossing">ข้ามทะเลทรายซาฮารา</h3>
+          <p data-lang-th="ข้ามเนินทรายสีทองด้วยอูฐและรถ 4x4 แล้วนอนหลับใต้ท้องฟ้าทะเลทรายที่ประดับด้วยดวงดาว" data-lang-en="Cross golden dunes by camel and 4x4, then sleep under a desert sky stitched with stars.">ข้ามเนินทรายสีทองด้วยอูฐและรถ 4x4 แล้วนอนหลับใต้ท้องฟ้าทะเลทรายที่ประดับด้วยดวงดาว</p>
           <div class="card-foot">
-            <div class="price">$2,890 <small>per traveler</small></div>
-            <a href="#contact">View itinerary <i data-lucide="arrow-right"></i></a>
+            <div class="price">$2,890 <small data-lang-th="ต่อท่าน" data-lang-en="per traveler">ต่อท่าน</small></div>
+            <a href="#contact"><span data-lang-th="ดูแผนการเดินทาง" data-lang-en="View itinerary">ดูแผนการเดินทาง</span> <i data-lucide="arrow-right"></i></a>
           </div>
         </div>
       </article>
@@ -660,16 +703,16 @@
       <article class="card reveal">
         <div class="photo">
           <img src="https://images.unsplash.com/photo-1569571665379-f952b753ccc7?w=800&h=600&fit=crop" alt="Ancient stone temple walls in daylight" />
-          <span class="tag">Cultural</span>
-          <span class="duration"><i data-lucide="calendar-days"></i> 12 Days</span>
+          <span class="tag" data-lang-th="วัฒนธรรม" data-lang-en="Cultural">วัฒนธรรม</span>
+          <span class="duration"><i data-lucide="calendar-days"></i> <span data-lang-th="12 วัน" data-lang-en="12 Days">12 วัน</span></span>
         </div>
         <div class="card-body">
-          <span class="loc"><i data-lucide="map-pin"></i> Siem Reap &amp; Beyond, Cambodia</span>
-          <h3>Temple Trails of Asia</h3>
-          <p>Walk ancient temple grounds at sunrise and trace centuries of living tradition with local historians.</p>
+          <span class="loc"><i data-lucide="map-pin"></i> <span data-lang-th="เสียมเรียบและพื้นที่ใกล้เคียง กัมพูชา" data-lang-en="Siem Reap &amp; Beyond, Cambodia">เสียมเรียบและพื้นที่ใกล้เคียง กัมพูชา</span></span>
+          <h3 data-lang-th="เส้นทางวัดแห่งเอเชีย" data-lang-en="Temple Trails of Asia">เส้นทางวัดแห่งเอเชีย</h3>
+          <p data-lang-th="เดินชมโบราณสถานยามรุ่งอรุณ และสัมผัสประเพณีที่สืบทอดมานับศตวรรษกับนักประวัติศาสตร์ท้องถิ่น" data-lang-en="Walk ancient temple grounds at sunrise and trace centuries of living tradition with local historians.">เดินชมโบราณสถานยามรุ่งอรุณ และสัมผัสประเพณีที่สืบทอดมานับศตวรรษกับนักประวัติศาสตร์ท้องถิ่น</p>
           <div class="card-foot">
-            <div class="price">$3,640 <small>per traveler</small></div>
-            <a href="#contact">View itinerary <i data-lucide="arrow-right"></i></a>
+            <div class="price">$3,640 <small data-lang-th="ต่อท่าน" data-lang-en="per traveler">ต่อท่าน</small></div>
+            <a href="#contact"><span data-lang-th="ดูแผนการเดินทาง" data-lang-en="View itinerary">ดูแผนการเดินทาง</span> <i data-lucide="arrow-right"></i></a>
           </div>
         </div>
       </article>
@@ -681,10 +724,10 @@
 <section class="break">
   <div class="wrap">
     <div class="break-inner reveal">
-      <span class="overline">Beyond the brochure</span>
-      <h2>Chase the light, not the checklist.</h2>
-      <p>From the aurora over Arctic Norway to first light on a desert ridge, our designers build itineraries around the moments that can't be scheduled — only set up for. Tell us what moves you, and we'll chart the rest.</p>
-      <a href="#contact" class="btn btn-ghost"><i data-lucide="sparkles"></i> Design a Custom Trip</a>
+      <span class="overline" data-lang-th="เหนือกว่าโบรชัวร์" data-lang-en="Beyond the brochure">เหนือกว่าโบรชัวร์</span>
+      <h2 data-lang-th="ไล่ตามแสง ไม่ใช่รายการที่ต้องเช็ก" data-lang-en="Chase the light, not the checklist.">ไล่ตามแสง ไม่ใช่รายการที่ต้องเช็ก</h2>
+      <p data-lang-th="ตั้งแต่แสงออโรราเหนือนอร์เวย์อาร์กติก ไปจนถึงแสงแรกบนสันทะเลทราย นักออกแบบของเราสร้างแผนการเดินทางรอบช่วงเวลาที่ไม่อาจกำหนดได้ — ทำได้เพียงเตรียมพร้อมไว้ บอกเราว่าอะไรที่สร้างแรงบันดาลใจให้คุณ แล้วเราจะวางแผนส่วนที่เหลือเอง" data-lang-en="From the aurora over Arctic Norway to first light on a desert ridge, our designers build itineraries around the moments that can't be scheduled — only set up for. Tell us what moves you, and we'll chart the rest.">ตั้งแต่แสงออโรราเหนือนอร์เวย์อาร์กติก ไปจนถึงแสงแรกบนสันทะเลทราย นักออกแบบของเราสร้างแผนการเดินทางรอบช่วงเวลาที่ไม่อาจกำหนดได้ — ทำได้เพียงเตรียมพร้อมไว้ บอกเราว่าอะไรที่สร้างแรงบันดาลใจให้คุณ แล้วเราจะวางแผนส่วนที่เหลือเอง</p>
+      <a href="#contact" class="btn btn-ghost"><i data-lucide="sparkles"></i> <span data-lang-th="ออกแบบทริปส่วนตัว" data-lang-en="Design a Custom Trip">ออกแบบทริปส่วนตัว</span></a>
     </div>
   </div>
 </section>
@@ -694,48 +737,48 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="overline">Why DeeLabs</span>
-        <h2>The difference is in the details.</h2>
+        <span class="overline" data-lang-th="ทำไมต้อง DeeLabs" data-lang-en="Why DeeLabs">ทำไมต้อง DeeLabs</span>
+        <h2 data-lang-th="ความแตกต่างอยู่ที่รายละเอียด" data-lang-en="The difference is in the details.">ความแตกต่างอยู่ที่รายละเอียด</h2>
       </div>
-      <p>Everything we do is built to make your journey effortless, meaningful, and entirely your own.</p>
+      <p data-lang-th="ทุกสิ่งที่เราทำสร้างขึ้นเพื่อให้การเดินทางของคุณราบรื่น มีความหมาย และเป็นของคุณอย่างแท้จริง" data-lang-en="Everything we do is built to make your journey effortless, meaningful, and entirely your own.">ทุกสิ่งที่เราทำสร้างขึ้นเพื่อให้การเดินทางของคุณราบรื่น มีความหมาย และเป็นของคุณอย่างแท้จริง</p>
     </div>
 
     <div class="feature-grid">
       <div class="feature reveal">
         <span class="n">01</span>
         <div class="ico"><i data-lucide="compass"></i></div>
-        <h3>Designed by Specialists</h3>
-        <p>Each region is handled by a dedicated designer who has lived and traveled there extensively.</p>
+        <h3 data-lang-th="ออกแบบโดยผู้เชี่ยวชาญ" data-lang-en="Designed by Specialists">ออกแบบโดยผู้เชี่ยวชาญ</h3>
+        <p data-lang-th="แต่ละภูมิภาคดูแลโดยนักออกแบบเฉพาะที่เคยใช้ชีวิตและเดินทางที่นั่นอย่างลึกซึ้ง" data-lang-en="Each region is handled by a dedicated designer who has lived and traveled there extensively.">แต่ละภูมิภาคดูแลโดยนักออกแบบเฉพาะที่เคยใช้ชีวิตและเดินทางที่นั่นอย่างลึกซึ้ง</p>
       </div>
       <div class="feature reveal">
         <span class="n">02</span>
         <div class="ico"><i data-lucide="shield-check"></i></div>
-        <h3>Protected &amp; Insured</h3>
-        <p>Fully bonded departures with 24/7 on-trip support and transparent, all-inclusive pricing.</p>
+        <h3 data-lang-th="คุ้มครองและมีประกัน" data-lang-en="Protected &amp; Insured">คุ้มครองและมีประกัน</h3>
+        <p data-lang-th="การเดินทางที่ได้รับการค้ำประกันเต็มรูปแบบ พร้อมการดูแลตลอด 24 ชั่วโมง และราคาแบบรวมทุกอย่างที่โปร่งใส" data-lang-en="Fully bonded departures with 24/7 on-trip support and transparent, all-inclusive pricing.">การเดินทางที่ได้รับการค้ำประกันเต็มรูปแบบ พร้อมการดูแลตลอด 24 ชั่วโมง และราคาแบบรวมทุกอย่างที่โปร่งใส</p>
       </div>
       <div class="feature reveal">
         <span class="n">03</span>
         <div class="ico"><i data-lucide="hand-heart"></i></div>
-        <h3>Travel With Purpose</h3>
-        <p>We partner with local communities and reinvest in the places that make our journeys possible.</p>
+        <h3 data-lang-th="เดินทางอย่างมีจุดมุ่งหมาย" data-lang-en="Travel With Purpose">เดินทางอย่างมีจุดมุ่งหมาย</h3>
+        <p data-lang-th="เราร่วมมือกับชุมชนท้องถิ่นและคืนกลับสู่สถานที่ที่ทำให้การเดินทางของเราเป็นไปได้" data-lang-en="We partner with local communities and reinvest in the places that make our journeys possible.">เราร่วมมือกับชุมชนท้องถิ่นและคืนกลับสู่สถานที่ที่ทำให้การเดินทางของเราเป็นไปได้</p>
       </div>
       <div class="feature reveal">
         <span class="n">04</span>
         <div class="ico"><i data-lucide="concierge-bell"></i></div>
-        <h3>Concierge Planning</h3>
-        <p>From visas to dietary needs, a single point of contact handles every detail before you fly.</p>
+        <h3 data-lang-th="วางแผนแบบคอนเซียร์จ" data-lang-en="Concierge Planning">วางแผนแบบคอนเซียร์จ</h3>
+        <p data-lang-th="ตั้งแต่วีซ่าไปจนถึงความต้องการด้านอาหาร ผู้ติดต่อเพียงคนเดียวดูแลทุกรายละเอียดก่อนคุณออกเดินทาง" data-lang-en="From visas to dietary needs, a single point of contact handles every detail before you fly.">ตั้งแต่วีซ่าไปจนถึงความต้องการด้านอาหาร ผู้ติดต่อเพียงคนเดียวดูแลทุกรายละเอียดก่อนคุณออกเดินทาง</p>
       </div>
       <div class="feature reveal">
         <span class="n">05</span>
         <div class="ico"><i data-lucide="footprints"></i></div>
-        <h3>Authentic Access</h3>
-        <p>Private homes, family kitchens, and guides whose stories you won't find in any guidebook.</p>
+        <h3 data-lang-th="เข้าถึงแบบแท้จริง" data-lang-en="Authentic Access">เข้าถึงแบบแท้จริง</h3>
+        <p data-lang-th="บ้านส่วนตัว ครัวของครอบครัว และไกด์ที่มีเรื่องราวซึ่งคุณจะไม่พบในไกด์บุ๊กเล่มใด" data-lang-en="Private homes, family kitchens, and guides whose stories you won't find in any guidebook.">บ้านส่วนตัว ครัวของครอบครัว และไกด์ที่มีเรื่องราวซึ่งคุณจะไม่พบในไกด์บุ๊กเล่มใด</p>
       </div>
       <div class="feature reveal">
         <span class="n">06</span>
         <div class="ico"><i data-lucide="badge-check"></i></div>
-        <h3>Flexible &amp; Fair</h3>
-        <p>Free date changes up to 60 days out and clear, honest cancellation terms — no fine print.</p>
+        <h3 data-lang-th="ยืดหยุ่นและเป็นธรรม" data-lang-en="Flexible &amp; Fair">ยืดหยุ่นและเป็นธรรม</h3>
+        <p data-lang-th="เปลี่ยนวันได้ฟรีล่วงหน้าถึง 60 วัน พร้อมเงื่อนไขการยกเลิกที่ชัดเจนและซื่อสัตย์ — ไม่มีข้อความตัวเล็กแอบแฝง" data-lang-en="Free date changes up to 60 days out and clear, honest cancellation terms — no fine print.">เปลี่ยนวันได้ฟรีล่วงหน้าถึง 60 วัน พร้อมเงื่อนไขการยกเลิกที่ชัดเจนและซื่อสัตย์ — ไม่มีข้อความตัวเล็กแอบแฝง</p>
       </div>
     </div>
   </div>
@@ -749,15 +792,15 @@
       <img src="https://images.unsplash.com/photo-1627923146572-5e3d07f32980?w=700&h=850&fit=crop" alt="Smiling traveler outdoors" />
     </div>
     <div class="reveal">
-      <span class="overline">Traveler stories</span>
+      <span class="overline" data-lang-th="เรื่องเล่าจากนักเดินทาง" data-lang-en="Traveler stories">เรื่องเล่าจากนักเดินทาง</span>
       <div class="stars" style="margin-top:1.2rem;">
         <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
       </div>
-      <blockquote>"DeeLabs planned every detail so carefully that all I had to do was be present. It was the first trip in years where I felt like a traveler, not a tourist."</blockquote>
+      <blockquote data-lang-th="&ldquo;DeeLabs วางแผนทุกรายละเอียดอย่างพิถีพิถัน จนสิ่งเดียวที่ฉันต้องทำคือใช้ชีวิตอยู่กับปัจจุบัน นี่เป็นทริปแรกในรอบหลายปีที่ฉันรู้สึกเหมือนเป็นนักเดินทาง ไม่ใช่นักท่องเที่ยว&rdquo;" data-lang-en="&quot;DeeLabs planned every detail so carefully that all I had to do was be present. It was the first trip in years where I felt like a traveler, not a tourist.&quot;">&ldquo;DeeLabs วางแผนทุกรายละเอียดอย่างพิถีพิถัน จนสิ่งเดียวที่ฉันต้องทำคือใช้ชีวิตอยู่กับปัจจุบัน นี่เป็นทริปแรกในรอบหลายปีที่ฉันรู้สึกเหมือนเป็นนักเดินทาง ไม่ใช่นักท่องเที่ยว&rdquo;</blockquote>
       <div class="quote-attr">
         <div class="who">
           <strong>Mara Ellison</strong>
-          <span>Patagonia Traverse, 2025</span>
+          <span data-lang-th="เส้นทางข้ามปาตาโกเนีย, 2025" data-lang-en="Patagonia Traverse, 2025">เส้นทางข้ามปาตาโกเนีย, 2025</span>
         </div>
       </div>
     </div>
@@ -767,12 +810,12 @@
 <!-- CTA -->
 <section class="cta" id="contact">
   <div class="wrap">
-    <span class="overline">Start your journey</span>
-    <h2>Where will <em>your</em> next story begin?</h2>
-    <p>Speak with a travel designer about your ideal escape. No obligation — just an honest conversation about where you'd love to go and how we can get you there.</p>
+    <span class="overline" data-lang-th="เริ่มต้นการเดินทางของคุณ" data-lang-en="Start your journey">เริ่มต้นการเดินทางของคุณ</span>
+    <h2><span data-lang-th="เรื่องราวบทต่อไปของ" data-lang-en="Where will ">เรื่องราวบทต่อไปของ</span><em data-lang-th="คุณ" data-lang-en="your">คุณ</em><span data-lang-th="จะเริ่มต้นที่ไหน?" data-lang-en=" next story begin?">จะเริ่มต้นที่ไหน?</span></h2>
+    <p data-lang-th="พูดคุยกับนักออกแบบการเดินทางเกี่ยวกับการพักผ่อนในฝันของคุณ ไม่มีข้อผูกมัด — เป็นเพียงการสนทนาอย่างจริงใจว่าคุณอยากไปที่ไหน และเราจะพาคุณไปที่นั่นได้อย่างไร" data-lang-en="Speak with a travel designer about your ideal escape. No obligation — just an honest conversation about where you'd love to go and how we can get you there.">พูดคุยกับนักออกแบบการเดินทางเกี่ยวกับการพักผ่อนในฝันของคุณ ไม่มีข้อผูกมัด — เป็นเพียงการสนทนาอย่างจริงใจว่าคุณอยากไปที่ไหน และเราจะพาคุณไปที่นั่นได้อย่างไร</p>
     <div class="cta-actions">
-      <a href="#" class="btn btn-solid"><i data-lucide="phone-call"></i> Talk to a Designer</a>
-      <a href="#destinations" class="btn btn-ghost" style="border-color:var(--cream);color:var(--cream);"><i data-lucide="book-open"></i> Browse Journeys</a>
+      <a href="#" class="btn btn-solid"><i data-lucide="phone-call"></i> <span data-lang-th="พูดคุยกับนักออกแบบ" data-lang-en="Talk to a Designer">พูดคุยกับนักออกแบบ</span></a>
+      <a href="#destinations" class="btn btn-ghost" style="border-color:var(--cream);color:var(--cream);"><i data-lucide="book-open"></i> <span data-lang-th="ดูการเดินทางทั้งหมด" data-lang-en="Browse Journeys">ดูการเดินทางทั้งหมด</span></a>
     </div>
   </div>
 </section>
@@ -783,7 +826,7 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <div class="logo">Dee<span>Labs</span><small>Tour</small></div>
-        <p>Curated travel experiences for the genuinely curious. Designed with care, guided with expertise, remembered for a lifetime.</p>
+        <p data-lang-th="ประสบการณ์การเดินทางที่คัดสรรเพื่อผู้ที่ใฝ่รู้อย่างแท้จริง ออกแบบด้วยความใส่ใจ นำทางด้วยความเชี่ยวชาญ และจดจำไปตลอดชีวิต" data-lang-en="Curated travel experiences for the genuinely curious. Designed with care, guided with expertise, remembered for a lifetime.">ประสบการณ์การเดินทางที่คัดสรรเพื่อผู้ที่ใฝ่รู้อย่างแท้จริง ออกแบบด้วยความใส่ใจ นำทางด้วยความเชี่ยวชาญ และจดจำไปตลอดชีวิต</p>
         <div class="socials">
           <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
           <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
@@ -792,36 +835,36 @@
         </div>
       </div>
       <div class="foot-col">
-        <h4>Explore</h4>
+        <h4 data-lang-th="สำรวจ" data-lang-en="Explore">สำรวจ</h4>
         <ul>
-          <li><a href="#destinations">Destinations</a></li>
-          <li><a href="#destinations">Featured Journeys</a></li>
-          <li><a href="#contact">Custom Trips</a></li>
-          <li><a href="#stories">Traveler Stories</a></li>
+          <li><a href="#destinations" data-lang-th="จุดหมายปลายทาง" data-lang-en="Destinations">จุดหมายปลายทาง</a></li>
+          <li><a href="#destinations" data-lang-th="การเดินทางแนะนำ" data-lang-en="Featured Journeys">การเดินทางแนะนำ</a></li>
+          <li><a href="#contact" data-lang-th="ทริปส่วนตัว" data-lang-en="Custom Trips">ทริปส่วนตัว</a></li>
+          <li><a href="#stories" data-lang-th="เรื่องเล่าจากนักเดินทาง" data-lang-en="Traveler Stories">เรื่องเล่าจากนักเดินทาง</a></li>
         </ul>
       </div>
       <div class="foot-col">
-        <h4>Company</h4>
+        <h4 data-lang-th="บริษัท" data-lang-en="Company">บริษัท</h4>
         <ul>
-          <li><a href="#about">Our Approach</a></li>
-          <li><a href="#why">Why DeeLabs</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
+          <li><a href="#about" data-lang-th="แนวทางของเรา" data-lang-en="Our Approach">แนวทางของเรา</a></li>
+          <li><a href="#why" data-lang-th="ทำไมต้อง DeeLabs" data-lang-en="Why DeeLabs">ทำไมต้อง DeeLabs</a></li>
+          <li><a href="#" data-lang-th="ร่วมงานกับเรา" data-lang-en="Careers">ร่วมงานกับเรา</a></li>
+          <li><a href="#" data-lang-th="ข่าวสาร" data-lang-en="Press">ข่าวสาร</a></li>
         </ul>
       </div>
       <div class="foot-col">
-        <h4>Support</h4>
+        <h4 data-lang-th="ความช่วยเหลือ" data-lang-en="Support">ความช่วยเหลือ</h4>
         <ul>
-          <li><a href="#contact">Contact Us</a></li>
-          <li><a href="#">Booking Terms</a></li>
-          <li><a href="#">Travel Insurance</a></li>
-          <li><a href="#">FAQ</a></li>
+          <li><a href="#contact" data-lang-th="ติดต่อเรา" data-lang-en="Contact Us">ติดต่อเรา</a></li>
+          <li><a href="#" data-lang-th="เงื่อนไขการจอง" data-lang-en="Booking Terms">เงื่อนไขการจอง</a></li>
+          <li><a href="#" data-lang-th="ประกันการเดินทาง" data-lang-en="Travel Insurance">ประกันการเดินทาง</a></li>
+          <li><a href="#" data-lang-th="คำถามที่พบบ่อย" data-lang-en="FAQ">คำถามที่พบบ่อย</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>&copy; 2026 DeeLabs Tour. All rights reserved.</span>
-      <span>Crafted for the curious traveler.</span>
+      <span data-lang-th="© 2026 DeeLabs Tour สงวนลิขสิทธิ์" data-lang-en="© 2026 DeeLabs Tour. All rights reserved.">© 2026 DeeLabs Tour สงวนลิขสิทธิ์</span>
+      <span data-lang-th="สร้างสรรค์เพื่อนักเดินทางผู้ใฝ่รู้" data-lang-en="Crafted for the curious traveler.">สร้างสรรค์เพื่อนักเดินทางผู้ใฝ่รู้</span>
     </div>
   </div>
 </footer>
@@ -835,6 +878,43 @@
   mobileMenu.querySelectorAll('a').forEach(a =>
     a.addEventListener('click', () => mobileMenu.classList.remove('open'))
   );
+
+  // Language switcher
+  const META = {
+    th: {
+      title: 'DeeLabs Tour — การเดินทางที่คัดสรรเพื่อนักเดินทางผู้ใฝ่รู้',
+      desc: 'DeeLabs Tour ออกแบบการเดินทางแบบกลุ่มเล็กที่นำทางโดยผู้เชี่ยวชาญสู่สถานที่อันน่าทึ่งที่สุดในโลก — การเดินทางที่พิถีพิถันเพื่อนักเดินทางผู้ใฝ่รู้อย่างแท้จริง'
+    },
+    en: {
+      title: 'DeeLabs Tour — Curated Journeys for the Curious Traveler',
+      desc: 'DeeLabs Tour designs small-group, expertly guided expeditions to the world’s most extraordinary places — thoughtful journeys for the genuinely curious traveler.'
+    }
+  };
+  const LANG_KEY = 'deelabs-lang';
+  const switchEl = document.getElementById('langSwitch');
+  const metaDesc = document.querySelector('meta[name="description"]');
+
+  function setLang(lang) {
+    if (lang !== 'en') lang = 'th';
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-lang-' + lang + ']').forEach(el => {
+      el.textContent = el.getAttribute('data-lang-' + lang);
+    });
+    document.title = META[lang].title;
+    if (metaDesc) metaDesc.setAttribute('content', META[lang].desc);
+    switchEl.querySelectorAll('button').forEach(b =>
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang)
+    );
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+  }
+
+  switchEl.querySelectorAll('button').forEach(b =>
+    b.addEventListener('click', () => setLang(b.getAttribute('data-lang')))
+  );
+
+  let saved = 'th';
+  try { saved = localStorage.getItem(LANG_KEY) || 'th'; } catch (e) {}
+  setLang(saved);
 
   // Scroll reveal
   const obs = new IntersectionObserver((entries) => {
