@@ -1,0 +1,30 @@
+{
+  "slug": "cust-1fae07a56407",
+  "brand_dna": "DeeLabs Tour is a travel company that specializes in curated travel experiences, targeting clients looking for exploration and adventure. The desired website style is formal, easy to understand, and focuses on clear navigation, showcasing stunning imagery and essential information about travel packages in an inviting manner.",
+  "variant_count": 3,
+  "client_id": null,
+  "tags": [
+    "travel",
+    "formal",
+    "easy-to-navigate"
+  ],
+  "generated_at": "2026-06-03T08:55:43Z",
+  "prompt_template": "variant.md",
+  "actions": [
+    {
+      "type": "generate",
+      "at": "2026-06-03T08:58:50Z",
+      "variants": {
+        "v1": {
+          "size_bytes": 33430
+        },
+        "v2": {
+          "size_bytes": 25125
+        },
+        "v3": {
+          "size_bytes": 31924
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeeLabs Tour — Curated Journeys for the Curious Traveler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<style>
+  :root{
+    --ink:#211c18;
+    --ink-soft:#4a423b;
+    --paper:#f6f1e9;
+    --paper-2:#efe7da;
+    --clay:#b9512e;
+    --clay-deep:#8f3d22;
+    --line:#d8cdbc;
+    --sand:#c9b79b;
+    --shadow:rgba(33,28,24,.14);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400;line-height:1.08;letter-spacing:-.01em}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  .eyebrow{
+    font-family:'Inter',sans-serif;font-size:.72rem;font-weight:600;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--clay);
+    display:inline-flex;align-items:center;gap:.6rem;
+  }
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--clay)}
+  .btn{
+    display:inline-flex;align-items:center;gap:.55rem;
+    font-size:.85rem;font-weight:500;letter-spacing:.04em;
+    padding:.95rem 1.7rem;border-radius:2px;cursor:pointer;
+    transition:.25s ease;border:1px solid transparent;
+  }
+  .btn-solid{background:var(--clay);color:#fff}
+  .btn-solid:hover{background:var(--clay-deep)}
+  .btn-ghost{border-color:var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn i{width:17px;height:17px}
+
+  /* NAV */
+  header{position:absolute;top:0;left:0;right:0;z-index:50}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+  .logo{font-family:'Fraunces',serif;font-size:1.55rem;font-weight:500;color:#fff;letter-spacing:.01em}
+  .logo span{color:var(--sand);font-style:italic}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.85);letter-spacing:.03em;transition:.2s}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{border:1px solid rgba(255,255,255,.55);color:#fff;padding:.6rem 1.2rem;border-radius:2px;font-size:.82rem;font-weight:500}
+  .nav-cta:hover{background:#fff;color:var(--ink)}
+  .menu-btn{display:none;background:none;border:none;color:#fff;cursor:pointer}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;color:#fff}
+  .hero-bg{position:absolute;inset:0;z-index:-2}
+  .hero-bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(33,28,24,.45) 0%,rgba(33,28,24,.15) 40%,rgba(33,28,24,.78) 100%)}
+  .hero-inner{padding-bottom:7vh;padding-top:18vh;width:100%}
+  .hero h1{font-size:clamp(2.9rem,7vw,6.2rem);max-width:14ch;font-weight:400}
+  .hero h1 em{font-style:italic;color:var(--sand)}
+  .hero p{max-width:46ch;margin:1.8rem 0 2.4rem;font-size:1.06rem;color:rgba(255,255,255,.9);font-weight:300}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .hero-meta{display:flex;gap:46px;margin-top:4vh;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.22);padding-top:2rem}
+  .hero-meta div span{display:block;font-family:'Fraunces',serif;font-size:2rem;line-height:1}
+  .hero-meta div small{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+
+  /* INTRO */
+  .intro{padding:110px 0;border-bottom:1px solid var(--line)}
+  .intro-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+  .intro h2{font-size:clamp(1.9rem,3.4vw,2.9rem);max-width:18ch}
+  .intro .lead{color:var(--ink-soft);font-size:1.08rem;margin-bottom:1.4rem}
+  .intro .cols{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:30px}
+  .intro .cols h4{font-size:1.18rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
+  .intro .cols i{width:19px;height:19px;color:var(--clay)}
+  .intro .cols p{font-size:.95rem;color:var(--ink-soft)}
+
+  /* DESTINATIONS */
+  .section{padding:110px 0}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:54px;flex-wrap:wrap}
+  .sec-head h2{font-size:clamp(2rem,3.8vw,3.1rem);max-width:16ch}
+  .sec-head p{max-width:38ch;color:var(--ink-soft);font-size:.98rem}
+  .dest-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .dest{position:relative;overflow:hidden;border-radius:3px;color:#fff;display:flex;align-items:flex-end;min-height:340px}
+  .dest img{position:absolute;inset:0;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+  .dest:hover img{transform:scale(1.06)}
+  .dest::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(33,28,24,.82) 100%)}
+  .dest-body{position:relative;z-index:2;padding:28px}
+  .dest .tag{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sand)}
+  .dest h3{font-size:1.55rem;margin:.35rem 0 .2rem;font-weight:500}
+  .dest .meta{font-size:.85rem;color:rgba(255,255,255,.82);display:flex;align-items:center;gap:.4rem}
+  .dest .meta i{width:15px;height:15px}
+  .d-tall{grid-column:span 5;min-height:520px}
+  .d-a{grid-column:span 7}
+  .d-b{grid-column:span 4}
+  .d-c{grid-column:span 4}
+  .d-d{grid-column:span 4}
+
+  /* PACKAGES */
+  .packages{background:var(--paper-2)}
+  .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:10px}
+  .pkg{background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:.3s}
+  .pkg:hover{transform:translateY(-6px);box-shadow:0 24px 50px -28px var(--shadow)}
+  .pkg-img{height:230px;position:relative;overflow:hidden}
+  .pkg-img img{transition:transform .8s ease}
+  .pkg:hover .pkg-img img{transform:scale(1.05)}
+  .pkg-price{position:absolute;top:16px;right:16px;background:var(--paper);color:var(--ink);font-size:.8rem;font-weight:600;padding:.4rem .8rem;border-radius:2px}
+  .pkg-body{padding:26px 26px 30px;display:flex;flex-direction:column;flex:1}
+  .pkg-body .tag{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--clay);font-weight:600}
+  .pkg-body h3{font-size:1.5rem;margin:.5rem 0 .7rem;font-weight:500}
+  .pkg-body>p{font-size:.92rem;color:var(--ink-soft);margin-bottom:1.2rem}
+  .pkg-feats{list-style:none;margin-top:auto;border-top:1px solid var(--line);padding-top:1.1rem;display:grid;gap:.55rem}
+  .pkg-feats li{display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:var(--ink-soft)}
+  .pkg-feats i{width:16px;height:16px;color:var(--clay);flex-shrink:0}
+  .pkg-link{margin-top:1.3rem;font-size:.85rem;font-weight:600;color:var(--clay);display:inline-flex;align-items:center;gap:.45rem}
+  .pkg-link i{width:16px;height:16px;transition:transform .25s}
+  .pkg:hover .pkg-link i{transform:translateX(4px)}
+
+  /* APPROACH split */
+  .approach{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+  .approach-img{position:relative;min-height:380px}
+  .approach-text{background:var(--ink);color:var(--paper);display:flex;align-items:center;padding:90px 7vw}
+  .approach-text .eyebrow{color:var(--sand)}
+  .approach-text .eyebrow::before{background:var(--sand)}
+  .approach-text h2{font-size:clamp(2rem,3.2vw,2.8rem);margin:1.2rem 0 1.3rem;color:#fff}
+  .approach-text p{color:rgba(246,241,233,.78);margin-bottom:2rem}
+  .steps{display:grid;gap:1.5rem}
+  .step{display:flex;gap:1.1rem;align-items:flex-start}
+  .step .num{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--sand);min-width:2.2rem}
+  .step h4{font-size:1.1rem;color:#fff;margin-bottom:.2rem}
+  .step p{margin:0;font-size:.9rem}
+
+  /* TESTIMONIAL */
+  .quote-sec{padding:120px 0;text-align:center}
+  .quote-sec i.mark{width:40px;height:40px;color:var(--clay);margin-bottom:1rem}
+  .quote-sec blockquote{font-family:'Fraunces',serif;font-size:clamp(1.6rem,3.2vw,2.5rem);font-weight:400;max-width:20ch;margin:0 auto 2rem;line-height:1.25}
+  .quote-sec blockquote em{font-style:italic;color:var(--clay)}
+  .quote-author{display:flex;align-items:center;justify-content:center;gap:1rem}
+  .quote-author .avatar{width:52px;height:52px;border-radius:50%;overflow:hidden}
+  .quote-author .who{text-align:left}
+  .quote-author .who strong{display:block;font-weight:600;font-size:.95rem}
+  .quote-author .who span{font-size:.82rem;color:var(--ink-soft)}
+
+  /* CTA */
+  .cta{position:relative;color:#fff;text-align:center;padding:130px 0;overflow:hidden}
+  .cta-bg{position:absolute;inset:0;z-index:-2}
+  .cta-bg::after{content:"";position:absolute;inset:0;background:rgba(33,28,24,.66)}
+  .cta .eyebrow{color:var(--sand);justify-content:center}
+  .cta .eyebrow::before{background:var(--sand)}
+  .cta h2{font-size:clamp(2.2rem,5vw,3.8rem);margin:1.2rem auto 1.3rem;max-width:16ch}
+  .cta p{max-width:42ch;margin:0 auto 2.4rem;color:rgba(255,255,255,.86);font-weight:300}
+  .cta .hero-actions{justify-content:center}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:rgba(246,241,233,.7);padding:80px 0 36px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:46px;padding-bottom:54px;border-bottom:1px solid rgba(246,241,233,.13)}
+  .foot-grid .logo{color:#fff;margin-bottom:1rem}
+  .foot-grid p{font-size:.92rem;max-width:34ch}
+  .foot-col h5{font-family:'Inter',sans-serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);margin-bottom:1.1rem;font-weight:600}
+  .foot-col a{display:block;font-size:.9rem;margin-bottom:.6rem;transition:.2s}
+  .foot-col a:hover{color:#fff}
+  .news{display:flex;border:1px solid rgba(246,241,233,.25);border-radius:2px;overflow:hidden;margin-top:.8rem}
+  .news input{flex:1;background:transparent;border:none;padding:.7rem .9rem;color:#fff;font-family:inherit;font-size:.85rem;outline:none}
+  .news input::placeholder{color:rgba(246,241,233,.5)}
+  .news button{background:var(--clay);border:none;color:#fff;padding:0 1rem;cursor:pointer;display:flex;align-items:center}
+  .news button i{width:17px;height:17px}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;font-size:.82rem;flex-wrap:wrap;gap:14px}
+  .socials{display:flex;gap:16px}
+  .socials a{width:36px;height:36px;border:1px solid rgba(246,241,233,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s}
+  .socials a:hover{background:var(--clay);border-color:var(--clay);color:#fff}
+  .socials i{width:16px;height:16px}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:920px){
+    .intro-grid{grid-template-columns:1fr;gap:38px}
+    .dest-grid{grid-template-columns:repeat(6,1fr)}
+    .d-tall,.d-a,.d-b,.d-c,.d-d{grid-column:span 6;min-height:300px}
+    .d-tall{min-height:380px}
+    .pkg-grid{grid-template-columns:1fr 1fr}
+    .approach{grid-template-columns:1fr}
+    .approach-text{padding:64px 32px}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:34px}
+  }
+  @media(max-width:680px){
+    .wrap{padding:0 22px}
+    .nav-links{display:none}
+    .menu-btn{display:block}
+    .hero-meta{gap:30px}
+    .intro .cols{grid-template-columns:1fr}
+    .pkg-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .intro,.section,.quote-sec{padding:72px 0}
+    .cta{padding:90px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">DeeLabs<span> Tour</span></div>
+      <div class="nav-links">
+        <a href="#destinations">Destinations</a>
+        <a href="#packages">Packages</a>
+        <a href="#approach">Our Approach</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="nav-cta">Plan a Trip</a>
+      </div>
+      <button class="menu-btn" aria-label="Menu"><i data-lucide="menu"></i></button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1611080402167-ed75bae6df32?w=1920&h=1280&fit=crop" alt="Mountain range at dawn">
+  </div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow" style="color:var(--sand)">Curated Journeys Since 2009</span>
+    <h1>Travel that is <em>considered</em>, never ordinary.</h1>
+    <p>DeeLabs Tour designs expeditions for the genuinely curious — itineraries shaped by place, pace, and the people who know it best.</p>
+    <div class="hero-actions">
+      <a href="#packages" class="btn btn-solid">Explore Packages <i data-lucide="arrow-right"></i></a>
+      <a href="#approach" class="btn btn-ghost" style="border-color:rgba(255,255,255,.6);color:#fff">How We Travel</a>
+    </div>
+    <div class="hero-meta">
+      <div><span>54</span><small>Destinations</small></div>
+      <div><span>11k+</span><small>Travelers Guided</small></div>
+      <div><span>4.9</span><small>Average Rating</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div class="reveal">
+      <span class="eyebrow">Who We Are</span>
+      <h2 style="margin-top:1.1rem">A travel company built around discovery, not checklists.</h2>
+    </div>
+    <div class="reveal">
+      <p class="lead">We believe a journey should reveal a place rather than merely visit it. Every DeeLabs itinerary is researched in the field, refined with local partners, and balanced so you have room to wander as well as to wonder.</p>
+      <div class="cols">
+        <div>
+          <h4><i data-lucide="compass"></i> Designed with intent</h4>
+          <p>Routes paced for depth — fewer stops, richer time, and the freedom to follow your own curiosity.</p>
+        </div>
+        <div>
+          <h4><i data-lucide="map-pin"></i> Rooted locally</h4>
+          <p>Guides and hosts who live where you travel, opening doors that maps never show.</p>
+        </div>
+        <div>
+          <h4><i data-lucide="shield-check"></i> Looked after</h4>
+          <p>Vetted logistics and round-the-clock support, so the only thing on your mind is the view.</p>
+        </div>
+        <div>
+          <h4><i data-lucide="leaf"></i> Lightly footed</h4>
+          <p>Small groups and responsible partners that respect the places we are fortunate to explore.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="section" id="destinations">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Destinations worth the distance.</h2>
+      <p>A selection of the regions our travelers return from changed — each with its own rhythm and reward.</p>
+    </div>
+    <div class="dest-grid">
+      <a href="#packages" class="dest d-tall reveal">
+        <img src="https://images.unsplash.com/photo-1488415032361-b7e238421f1b?w=900&h=1100&fit=crop" alt="Aurora over snowy mountains in Iceland">
+        <div class="dest-body">
+          <span class="tag">Arctic Circle</span>
+          <h3>Iceland &amp; the Northern Lights</h3>
+          <span class="meta"><i data-lucide="calendar"></i> 7 nights · Sep–Mar</span>
+        </div>
+      </a>
+      <a href="#packages" class="dest d-a reveal">
+        <img src="https://images.unsplash.com/photo-1535262412227-85541e910204?w=1100&h=700&fit=crop" alt="Tropical island ringed by clear water">
+        <div class="dest-body">
+          <span class="tag">South Pacific</span>
+          <h3>Island Archipelagos</h3>
+          <span class="meta"><i data-lucide="calendar"></i> 9 nights · Year-round</span>
+        </div>
+      </a>
+      <a href="#packages" class="dest d-b reveal">
+        <img src="https://images.unsplash.com/photo-1638024510305-c36fcc0bf3b1?w=700&h=520&fit=crop" alt="Vast desert sand dunes under blue sky">
+        <div class="dest-body">
+          <span class="tag">North Africa</span>
+          <h3>The Great Dunes</h3>
+          <span class="meta"><i data-lucide="calendar"></i> 6 nights · Oct–Apr</span>
+        </div>
+      </a>
+      <a href="#packages" class="dest d-c reveal">
+        <img src="https://images.unsplash.com/photo-1578469645742-46cae010e5d4?w=700&h=520&fit=crop" alt="Pagoda temple in Kyoto, Japan">
+        <div class="dest-body">
+          <span class="tag">East Asia</span>
+          <h3>Old Kyoto</h3>
+          <span class="meta"><i data-lucide="calendar"></i> 8 nights · Spring &amp; Autumn</span>
+        </div>
+      </a>
+      <a href="#packages" class="dest d-d reveal">
+        <img src="https://images.unsplash.com/photo-1498307833015-e7b400441eb8?w=700&h=520&fit=crop" alt="Gondolas on a Venice canal">
+        <div class="dest-body">
+          <span class="tag">Northern Italy</span>
+          <h3>Venetian Waterways</h3>
+          <span class="meta"><i data-lucide="calendar"></i> 5 nights · Apr–Oct</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="section packages" id="packages">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Signature travel packages.</h2>
+      <p>Fully arranged journeys with transparent pricing — guided where it matters, free where it counts.</p>
+    </div>
+    <div class="pkg-grid">
+
+      <article class="pkg reveal">
+        <div class="pkg-img">
+          <img src="https://images.unsplash.com/photo-1604223190546-a43e4c7f29d7?w=700&h=500&fit=crop" alt="Green and brown mountains for hiking">
+          <span class="pkg-price">from $2,480</span>
+        </div>
+        <div class="pkg-body">
+          <span class="tag">Adventure</span>
+          <h3>Highland Trek &amp; Summits</h3>
+          <p>A walking expedition through alpine valleys, mountain villages, and the trails between them.</p>
+          <ul class="pkg-feats">
+            <li><i data-lucide="moon"></i> 7 nights, mountain lodges</li>
+            <li><i data-lucide="footprints"></i> Daily guided hikes</li>
+            <li><i data-lucide="users"></i> Small group · max 10</li>
+          </ul>
+          <a href="#contact" class="pkg-link">View itinerary <i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="pkg reveal">
+        <div class="pkg-img">
+          <img src="https://images.unsplash.com/photo-1672841828459-bc913fdcd995?w=700&h=500&fit=crop" alt="Tropical beach with palm trees and clear water">
+          <span class="pkg-price">from $3,150</span>
+        </div>
+        <div class="pkg-body">
+          <span class="tag">Coastal</span>
+          <h3>Island Hopping Retreat</h3>
+          <p>Sail between hidden coves and reef-fringed islands, with time to simply be by the water.</p>
+          <ul class="pkg-feats">
+            <li><i data-lucide="moon"></i> 9 nights, seaside stays</li>
+            <li><i data-lucide="sailboat"></i> Private boat transfers</li>
+            <li><i data-lucide="users"></i> Small group · max 12</li>
+          </ul>
+          <a href="#contact" class="pkg-link">View itinerary <i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="pkg reveal">
+        <div class="pkg-img">
+          <img src="https://images.unsplash.com/photo-1503640538573-148065ba4904?w=700&h=500&fit=crop" alt="Japanese pagoda beside water">
+          <span class="pkg-price">from $3,890</span>
+        </div>
+        <div class="pkg-body">
+          <span class="tag">Culture</span>
+          <h3>Temples &amp; Traditions of Japan</h3>
+          <p>Slow mornings in ancient gardens, craft workshops, and the quiet ceremony of everyday life.</p>
+          <ul class="pkg-feats">
+            <li><i data-lucide="moon"></i> 8 nights, ryokan &amp; city</li>
+            <li><i data-lucide="utensils"></i> Curated tasting menus</li>
+            <li><i data-lucide="users"></i> Small group · max 8</li>
+          </ul>
+          <a href="#contact" class="pkg-link">View itinerary <i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+
+    </div>
+    <div style="text-align:center;margin-top:52px" class="reveal">
+      <a href="#contact" class="btn btn-ghost">Browse all packages <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach" id="approach">
+  <div class="approach-img">
+    <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=1000&h=1200&fit=crop" alt="Traveler with backpack walking through greenery">
+  </div>
+  <div class="approach-text">
+    <div>
+      <span class="eyebrow">Our Approach</span>
+      <h2>From first idea to last sunset, planned with care.</h2>
+      <p>Booking with DeeLabs is a conversation, not a transaction. Here is how a journey takes shape.</p>
+      <div class="steps">
+        <div class="step">
+          <span class="num">01</span>
+          <div><h4>We listen</h4><p>A specialist learns what moves you — the pace, the places, the kind of moments you remember.</p></div>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <div><h4>We design</h4><p>You receive a tailored itinerary, refined together until every day feels right.</p></div>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <div><h4>You explore</h4><p>We handle the logistics and stay reachable throughout, so you travel with ease.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="quote-sec">
+  <div class="wrap">
+    <i data-lucide="quote" class="mark reveal"></i>
+    <blockquote class="reveal">DeeLabs didn't just book our trip — they understood <em>why</em> we wanted to go. Every detail felt personal.</blockquote>
+    <div class="quote-author reveal">
+      <div class="avatar"><img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=120&h=120&fit=crop" alt="Traveler portrait"></div>
+      <div class="who">
+        <strong>Marielle Andersson</strong>
+        <span>Iceland Expedition · 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-bg">
+    <img src="https://images.unsplash.com/photo-1549880181-56a44cf4a9a5?w=1920&h=1100&fit=crop" alt="Snow-covered mountain ranges">
+  </div>
+  <div class="wrap">
+    <span class="eyebrow">Start the Conversation</span>
+    <h2>Where will your next journey take you?</h2>
+    <p>Tell us what you're dreaming of and a travel specialist will be in touch within one working day.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-solid">Plan My Trip <i data-lucide="send"></i></a>
+      <a href="tel:+10000000000" class="btn btn-ghost" style="border-color:#fff;color:#fff"><i data-lucide="phone"></i> Speak to a Specialist</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">DeeLabs<span> Tour</span></div>
+        <p>Curated travel experiences for the genuinely curious. Thoughtful itineraries, trusted local partners, journeys that stay with you.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Explore</h5>
+        <a href="#destinations">Destinations</a>
+        <a href="#packages">Packages</a>
+        <a href="#approach">Our Approach</a>
+        <a href="#">Travel Journal</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="#">About Us</a>
+        <a href="#">Local Partners</a>
+        <a href="#">Responsible Travel</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h5>Travel Notes</h5>
+        <p style="font-size:.88rem;margin-bottom:.4rem">Seasonal routes and quiet recommendations, a few times a year.</p>
+        <form class="news" onsubmit="return false">
+          <input type="email" placeholder="Your email" aria-label="Email">
+          <button aria-label="Subscribe"><i data-lucide="arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 DeeLabs Tour. All rights reserved.</span>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay=(i%3*0.08)+'s';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>

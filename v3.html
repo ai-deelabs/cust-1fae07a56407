@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DeeLabs Tour — Curated Journeys for the Curious Traveler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f4efe7;
+    --paper-2: #ece4d8;
+    --ink: #211c16;
+    --ink-soft: #5b5247;
+    --clay: #b04a26;
+    --clay-deep: #7f3417;
+    --line: #d6cbb9;
+    --cream: #fbf8f2;
+    --shadow: 26px 26px 60px rgba(33, 28, 22, .10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { display: block; width: 100%; }
+
+  .wrap { width: min(1200px, 90vw); margin: 0 auto; }
+
+  .overline {
+    font-family: 'Inter', sans-serif;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--clay);
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+  }
+  .overline::before {
+    content: "";
+    width: 34px;
+    height: 1px;
+    background: var(--clay);
+    display: inline-block;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    font-weight: 600;
+    font-size: .9rem;
+    padding: .95rem 1.7rem;
+    border-radius: 2px;
+    transition: transform .25s ease, background .25s ease, color .25s ease;
+  }
+  .btn i { width: 17px; height: 17px; }
+  .btn-solid { background: var(--ink); color: var(--cream); }
+  .btn-solid:hover { background: var(--clay); transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--cream); transform: translateY(-2px); }
+
+  /* ---------- NAV ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(244, 239, 231, .88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    display: flex;
+    align-items: baseline;
+    gap: .15rem;
+  }
+  .logo span { color: var(--clay); }
+  .logo small {
+    font-family: 'Inter', sans-serif;
+    font-size: .58rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-left: .5rem;
+    font-weight: 600;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.4rem;
+    list-style: none;
+    font-size: .9rem;
+    font-weight: 500;
+  }
+  .nav-links a { position: relative; padding: .3rem 0; }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1.5px;
+    background: var(--clay);
+    transition: width .3s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta { display: flex; align-items: center; gap: 1.2rem; }
+  .menu-btn {
+    display: none;
+    background: none; border: none; cursor: pointer; color: var(--ink);
+  }
+  .menu-btn i { width: 26px; height: 26px; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    padding: clamp(3.5rem, 8vw, 7rem) 0 0;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: end;
+  }
+  .hero h1 {
+    font-size: clamp(2.9rem, 7vw, 5.6rem);
+    margin-bottom: 1.6rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--clay);
+    font-weight: 400;
+  }
+  .hero-lead {
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin-bottom: 2.2rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.6rem; }
+  .hero-stats {
+    display: flex;
+    gap: 2.6rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1.6rem;
+    flex-wrap: wrap;
+  }
+  .hero-stats .num {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    display: block;
+  }
+  .hero-stats .lbl {
+    font-size: .76rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .hero-figure {
+    position: relative;
+  }
+  .hero-figure .frame {
+    overflow: hidden;
+    border-radius: 3px;
+    box-shadow: var(--shadow);
+  }
+  .hero-figure img {
+    height: clamp(360px, 52vw, 600px);
+    object-fit: cover;
+    transition: transform 6s ease;
+  }
+  .hero-figure:hover img { transform: scale(1.06); }
+  .hero-badge {
+    position: absolute;
+    bottom: -22px; left: -22px;
+    background: var(--cream);
+    padding: 1.1rem 1.3rem;
+    border-radius: 3px;
+    box-shadow: var(--shadow);
+    max-width: 220px;
+  }
+  .hero-badge .overline { margin-bottom: .35rem; }
+  .hero-badge p { font-size: .92rem; font-weight: 500; line-height: 1.4; }
+
+  .marquee {
+    margin-top: clamp(3.5rem, 7vw, 6rem);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    background: var(--paper-2);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 3.5rem;
+    white-space: nowrap;
+    padding: 1.05rem 0;
+    animation: scroll 30s linear infinite;
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+  }
+  .marquee-track span { display: inline-flex; align-items: center; gap: 3.5rem; }
+  .marquee-track i { width: 15px; height: 15px; color: var(--clay); }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ---------- SECTION HEADER ---------- */
+  section { padding: clamp(4rem, 9vw, 7.5rem) 0; }
+  .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+  }
+  .sec-head h2 {
+    font-size: clamp(2rem, 4.2vw, 3.2rem);
+    max-width: 16ch;
+    margin-top: 1.1rem;
+  }
+  .sec-head p { max-width: 38ch; color: var(--ink-soft); }
+
+  /* ---------- ABOUT ---------- */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+  .about-text h2 {
+    font-size: clamp(1.9rem, 3.8vw, 2.9rem);
+    margin: 1.2rem 0 1.4rem;
+  }
+  .about-text p { color: var(--ink-soft); margin-bottom: 1.2rem; }
+  .about-points { list-style: none; margin-top: 1.8rem; display: grid; gap: 1.1rem; }
+  .about-points li { display: flex; gap: 1rem; align-items: flex-start; }
+  .about-points .ico {
+    flex: none;
+    width: 42px; height: 42px;
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    border-radius: 50%;
+    color: var(--clay);
+  }
+  .about-points i { width: 18px; height: 18px; }
+  .about-points h4 { font-size: 1.05rem; margin-bottom: .15rem; }
+  .about-points span { font-size: .9rem; color: var(--ink-soft); }
+  .about-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .about-figs .tall { grid-row: span 2; }
+  .about-figs img {
+    height: 100%;
+    min-height: 180px;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+
+  /* ---------- PACKAGES ---------- */
+  .pkg-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.4rem, 3vw, 2.4rem);
+  }
+  .card {
+    background: var(--cream);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 0 var(--line);
+    transition: transform .35s ease, box-shadow .35s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .card .photo { position: relative; overflow: hidden; height: 280px; }
+  .card .photo img { height: 100%; object-fit: cover; transition: transform .9s ease; }
+  .card:hover .photo img { transform: scale(1.07); }
+  .card .tag {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: .68rem; font-weight: 600;
+    letter-spacing: .14em; text-transform: uppercase;
+    padding: .4rem .8rem; border-radius: 2px;
+  }
+  .card .duration {
+    position: absolute; bottom: 1rem; right: 1rem;
+    background: rgba(33,28,22,.78);
+    color: var(--cream);
+    font-size: .76rem; font-weight: 500;
+    padding: .35rem .75rem; border-radius: 2px;
+    display: flex; align-items: center; gap: .4rem;
+  }
+  .card .duration i { width: 14px; height: 14px; }
+  .card-body { padding: 1.6rem 1.5rem 1.7rem; display: flex; flex-direction: column; flex: 1; }
+  .card-body .loc {
+    font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-soft); display: flex; align-items: center; gap: .4rem;
+    margin-bottom: .6rem;
+  }
+  .card-body .loc i { width: 14px; height: 14px; color: var(--clay); }
+  .card-body h3 { font-size: 1.5rem; margin-bottom: .6rem; }
+  .card-body p { font-size: .92rem; color: var(--ink-soft); margin-bottom: 1.4rem; }
+  .card-foot {
+    margin-top: auto;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--line); padding-top: 1.2rem;
+  }
+  .card-foot .price { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 600; }
+  .card-foot .price small { font-size: .72rem; color: var(--ink-soft); font-weight: 400; display: block; font-family: 'Inter', sans-serif; letter-spacing: .04em; }
+  .card-foot a {
+    display: inline-flex; align-items: center; gap: .45rem;
+    font-size: .85rem; font-weight: 600; color: var(--clay);
+  }
+  .card-foot a i { width: 16px; height: 16px; transition: transform .25s ease; }
+  .card-foot a:hover i { transform: translateX(4px); }
+
+  /* ---------- FEATURE BREAK ---------- */
+  .break {
+    position: relative;
+    background:
+      linear-gradient(90deg, rgba(20,16,12,.82) 0%, rgba(20,16,12,.35) 55%, rgba(20,16,12,.15) 100%),
+      url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=1600&h=900&fit=crop') center/cover fixed;
+    color: var(--cream);
+    padding: clamp(5rem, 12vw, 9rem) 0;
+  }
+  .break-inner { max-width: 560px; }
+  .break .overline { color: #e9b69e; }
+  .break .overline::before { background: #e9b69e; }
+  .break h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 1.2rem 0 1.4rem; color: var(--cream); }
+  .break p { color: rgba(251,248,242,.82); font-size: 1.08rem; margin-bottom: 2rem; max-width: 48ch; }
+  .break .btn-ghost { border-color: var(--cream); color: var(--cream); }
+  .break .btn-ghost:hover { background: var(--cream); color: var(--ink); }
+
+  /* ---------- WHY / FEATURES ---------- */
+  .why { background: var(--cream); }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .feature {
+    padding: 2.4rem 2rem;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transition: background .3s ease;
+  }
+  .feature:hover { background: var(--paper-2); }
+  .feature .n {
+    font-family: 'Fraunces', serif;
+    font-size: .95rem; color: var(--clay); display: block; margin-bottom: 1.4rem;
+  }
+  .feature .ico {
+    width: 50px; height: 50px;
+    display: grid; place-items: center;
+    background: var(--paper);
+    border-radius: 50%;
+    margin-bottom: 1.3rem;
+    color: var(--clay);
+  }
+  .feature .ico i { width: 22px; height: 22px; }
+  .feature h3 { font-size: 1.3rem; margin-bottom: .6rem; }
+  .feature p { font-size: .92rem; color: var(--ink-soft); }
+
+  /* ---------- TESTIMONIAL ---------- */
+  .quote-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .quote-figure { position: relative; }
+  .quote-figure img { border-radius: 4px; height: clamp(360px, 45vw, 480px); object-fit: cover; box-shadow: var(--shadow); }
+  .quote-figure .mark {
+    position: absolute; top: -28px; right: 24px;
+    font-family: 'Fraunces', serif; font-size: 7rem; color: var(--clay); line-height: 1;
+  }
+  blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
+    font-weight: 400;
+    line-height: 1.32;
+    margin-bottom: 2rem;
+  }
+  .quote-attr { display: flex; align-items: center; gap: 1rem; }
+  .quote-attr .who strong { display: block; font-size: 1rem; }
+  .quote-attr .who span { font-size: .85rem; color: var(--ink-soft); }
+  .stars { display: flex; gap: .2rem; color: var(--clay); margin-bottom: 1.4rem; }
+  .stars i { width: 18px; height: 18px; fill: currentColor; }
+
+  /* ---------- CTA ---------- */
+  .cta { background: var(--ink); color: var(--cream); text-align: center; }
+  .cta h2 { font-size: clamp(2.2rem, 5.5vw, 4rem); max-width: 18ch; margin: 1.2rem auto 1.3rem; color: var(--cream); }
+  .cta h2 em { font-style: italic; color: #e9b69e; font-weight: 400; }
+  .cta p { color: rgba(251,248,242,.78); max-width: 50ch; margin: 0 auto 2.4rem; font-size: 1.08rem; }
+  .cta .overline { color: #e9b69e; justify-content: center; }
+  .cta .overline::before { background: #e9b69e; }
+  .cta .btn-solid { background: var(--clay); }
+  .cta .btn-solid:hover { background: var(--cream); color: var(--ink); }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ---------- FOOTER ---------- */
+  footer { background: var(--paper-2); padding: clamp(3rem, 6vw, 4.5rem) 0 2rem; }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .foot-brand .logo { font-size: 1.7rem; margin-bottom: 1rem; }
+  .foot-brand p { color: var(--ink-soft); font-size: .92rem; max-width: 34ch; margin-bottom: 1.4rem; }
+  .socials { display: flex; gap: .7rem; }
+  .socials a {
+    width: 40px; height: 40px; border: 1px solid var(--line);
+    border-radius: 50%; display: grid; place-items: center; color: var(--ink);
+    transition: background .25s ease, color .25s ease;
+  }
+  .socials a:hover { background: var(--ink); color: var(--cream); }
+  .socials i { width: 18px; height: 18px; }
+  .foot-col h4 { font-family: 'Inter', sans-serif; font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 1.2rem; font-weight: 600; }
+  .foot-col ul { list-style: none; display: grid; gap: .7rem; }
+  .foot-col a { font-size: .92rem; color: var(--ink); transition: color .2s ease; }
+  .foot-col a:hover { color: var(--clay); }
+  .foot-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 1.6rem; font-size: .82rem; color: var(--ink-soft); flex-wrap: wrap; gap: 1rem;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .hero-grid, .about-grid, .quote-grid { grid-template-columns: 1fr; }
+    .pkg-grid { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .feature { border-right: none; }
+    .hero-figure { margin-top: 2.5rem; }
+    .quote-figure { order: 2; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .break { background-attachment: scroll; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .menu-btn { display: block; }
+    .nav-cta .btn { display: none; }
+    .hero-stats { gap: 1.6rem; }
+    .about-figs { grid-template-columns: 1fr 1fr; }
+    .foot-grid { grid-template-columns: 1fr; }
+    blockquote { font-size: 1.5rem; }
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: .2rem;
+    padding: 0 0 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { padding: .8rem 0; border-top: 1px solid var(--line); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">Dee<span>Labs</span><small>Tour</small></a>
+    <ul class="nav-links">
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#about">Our Approach</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#stories">Stories</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-solid"><i data-lucide="compass"></i> Plan a Journey</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+  <div class="wrap mobile-menu" id="mobileMenu">
+    <a href="#destinations">Destinations</a>
+    <a href="#about">Our Approach</a>
+    <a href="#why">Why Us</a>
+    <a href="#stories">Stories</a>
+    <a href="#contact">Plan a Journey</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="overline">Curated travel since 2009</span>
+      <h1>Journeys made for the <em>genuinely</em> curious.</h1>
+      <p class="hero-lead">DeeLabs Tour designs small-group expeditions to the world's most extraordinary places — thoughtfully planned, expertly guided, and yours to remember for a lifetime.</p>
+      <div class="hero-actions">
+        <a href="#destinations" class="btn btn-solid"><i data-lucide="map"></i> Explore Destinations</a>
+        <a href="#about" class="btn btn-ghost"><i data-lucide="play"></i> How We Travel</a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="num">62</span><span class="lbl">Countries Charted</span></div>
+        <div><span class="num">14k+</span><span class="lbl">Travelers Guided</span></div>
+        <div><span class="num">4.9</span><span class="lbl">Average Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-figure reveal">
+      <div class="frame">
+        <img src="https://images.unsplash.com/photo-1604223190546-a43e4c7f29d7?w=900&h=1100&fit=crop" alt="Hiker overlooking a vast mountain landscape" />
+      </div>
+      <div class="hero-badge">
+        <span class="overline">Next departure</span>
+        <p>Patagonia Traverse — seats remaining for autumn 2026.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>
+        Andes &amp; Patagonia <i data-lucide="mountain"></i> Coastal Greece <i data-lucide="waves"></i> Saharan Crossings <i data-lucide="sun"></i> Temple Trails of Asia <i data-lucide="landmark"></i> Nordic Fjords <i data-lucide="snowflake"></i>
+      </span>
+      <span>
+        Andes &amp; Patagonia <i data-lucide="mountain"></i> Coastal Greece <i data-lucide="waves"></i> Saharan Crossings <i data-lucide="sun"></i> Temple Trails of Asia <i data-lucide="landmark"></i> Nordic Fjords <i data-lucide="snowflake"></i>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-figs reveal">
+      <img class="tall" src="https://images.unsplash.com/photo-1611771341253-dadb347165a8?w=600&h=820&fit=crop" alt="Fjord landscape with calm water" />
+      <img src="https://images.unsplash.com/photo-1620414476107-2188707d780b?w=600&h=400&fit=crop" alt="Green valley beneath mountains" />
+      <img src="https://images.unsplash.com/photo-1535262412227-85541e910204?w=600&h=400&fit=crop" alt="Tropical island from above" />
+    </div>
+    <div class="about-text reveal">
+      <span class="overline">Our approach</span>
+      <h2>We don't sell destinations. We design experiences.</h2>
+      <p>Every DeeLabs itinerary begins with a question: what makes a place worth the journey? Our travel designers spend months on the ground, building relationships with local guides, hosts, and communities long before the first traveler arrives.</p>
+      <p>The result is travel with intention — unhurried, well-paced, and rich with the kind of moments you can't book online.</p>
+      <ul class="about-points">
+        <li>
+          <span class="ico"><i data-lucide="users-round"></i></span>
+          <div><h4>Small groups, always</h4><span>A maximum of twelve travelers per departure.</span></div>
+        </li>
+        <li>
+          <span class="ico"><i data-lucide="route"></i></span>
+          <div><h4>Local-led routes</h4><span>Guided by people who call each place home.</span></div>
+        </li>
+        <li>
+          <span class="ico"><i data-lucide="leaf"></i></span>
+          <div><h4>Travel that gives back</h4><span>A share of every trip supports local conservation.</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="destinations">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="overline">Featured journeys</span>
+        <h2>Signature expeditions, ready when you are.</h2>
+      </div>
+      <p>Hand-built itineraries across five continents — each with fixed departures and a dedicated travel designer.</p>
+    </div>
+
+    <div class="pkg-grid">
+      <article class="card reveal">
+        <div class="photo">
+          <img src="https://images.unsplash.com/photo-1611080402167-ed75bae6df32?w=800&h=600&fit=crop" alt="Rocky mountain peaks under a clear sky" />
+          <span class="tag">Adventure</span>
+          <span class="duration"><i data-lucide="calendar-days"></i> 11 Days</span>
+        </div>
+        <div class="card-body">
+          <span class="loc"><i data-lucide="map-pin"></i> Patagonia, Argentina &amp; Chile</span>
+          <h3>The Patagonia Traverse</h3>
+          <p>Trek granite spires, drift past glaciers, and end each day beneath some of the clearest skies on earth.</p>
+          <div class="card-foot">
+            <div class="price">$4,280 <small>per traveler</small></div>
+            <a href="#contact">View itinerary <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="photo">
+          <img src="https://images.unsplash.com/photo-1672841828459-bc913fdcd995?w=800&h=600&fit=crop" alt="Tropical beach with palm trees and clear water" />
+          <span class="tag">Coastal</span>
+          <span class="duration"><i data-lucide="calendar-days"></i> 8 Days</span>
+        </div>
+        <div class="card-body">
+          <span class="loc"><i data-lucide="map-pin"></i> Cyclades, Greece</span>
+          <h3>Aegean Island Hopping</h3>
+          <p>Sail between sun-bleached villages, hidden coves, and harbor tavernas across the Greek isles.</p>
+          <div class="card-foot">
+            <div class="price">$3,150 <small>per traveler</small></div>
+            <a href="#contact">View itinerary <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="photo">
+          <img src="https://images.unsplash.com/photo-1638024510305-c36fcc0bf3b1?w=800&h=600&fit=crop" alt="Vast desert sand dunes under a blue sky" />
+          <span class="tag">Expedition</span>
+          <span class="duration"><i data-lucide="calendar-days"></i> 9 Days</span>
+        </div>
+        <div class="card-body">
+          <span class="loc"><i data-lucide="map-pin"></i> Merzouga, Morocco</span>
+          <h3>Saharan Crossing</h3>
+          <p>Cross golden dunes by camel and 4x4, then sleep under a desert sky stitched with stars.</p>
+          <div class="card-foot">
+            <div class="price">$2,890 <small>per traveler</small></div>
+            <a href="#contact">View itinerary <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="photo">
+          <img src="https://images.unsplash.com/photo-1569571665379-f952b753ccc7?w=800&h=600&fit=crop" alt="Ancient stone temple walls in daylight" />
+          <span class="tag">Cultural</span>
+          <span class="duration"><i data-lucide="calendar-days"></i> 12 Days</span>
+        </div>
+        <div class="card-body">
+          <span class="loc"><i data-lucide="map-pin"></i> Siem Reap &amp; Beyond, Cambodia</span>
+          <h3>Temple Trails of Asia</h3>
+          <p>Walk ancient temple grounds at sunrise and trace centuries of living tradition with local historians.</p>
+          <div class="card-foot">
+            <div class="price">$3,640 <small>per traveler</small></div>
+            <a href="#contact">View itinerary <i data-lucide="arrow-right"></i></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE BREAK -->
+<section class="break">
+  <div class="wrap">
+    <div class="break-inner reveal">
+      <span class="overline">Beyond the brochure</span>
+      <h2>Chase the light, not the checklist.</h2>
+      <p>From the aurora over Arctic Norway to first light on a desert ridge, our designers build itineraries around the moments that can't be scheduled — only set up for. Tell us what moves you, and we'll chart the rest.</p>
+      <a href="#contact" class="btn btn-ghost"><i data-lucide="sparkles"></i> Design a Custom Trip</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="overline">Why DeeLabs</span>
+        <h2>The difference is in the details.</h2>
+      </div>
+      <p>Everything we do is built to make your journey effortless, meaningful, and entirely your own.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature reveal">
+        <span class="n">01</span>
+        <div class="ico"><i data-lucide="compass"></i></div>
+        <h3>Designed by Specialists</h3>
+        <p>Each region is handled by a dedicated designer who has lived and traveled there extensively.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="n">02</span>
+        <div class="ico"><i data-lucide="shield-check"></i></div>
+        <h3>Protected &amp; Insured</h3>
+        <p>Fully bonded departures with 24/7 on-trip support and transparent, all-inclusive pricing.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="n">03</span>
+        <div class="ico"><i data-lucide="hand-heart"></i></div>
+        <h3>Travel With Purpose</h3>
+        <p>We partner with local communities and reinvest in the places that make our journeys possible.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="n">04</span>
+        <div class="ico"><i data-lucide="concierge-bell"></i></div>
+        <h3>Concierge Planning</h3>
+        <p>From visas to dietary needs, a single point of contact handles every detail before you fly.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="n">05</span>
+        <div class="ico"><i data-lucide="footprints"></i></div>
+        <h3>Authentic Access</h3>
+        <p>Private homes, family kitchens, and guides whose stories you won't find in any guidebook.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="n">06</span>
+        <div class="ico"><i data-lucide="badge-check"></i></div>
+        <h3>Flexible &amp; Fair</h3>
+        <p>Free date changes up to 60 days out and clear, honest cancellation terms — no fine print.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section id="stories">
+  <div class="wrap quote-grid">
+    <div class="quote-figure reveal">
+      <span class="mark">&ldquo;</span>
+      <img src="https://images.unsplash.com/photo-1627923146572-5e3d07f32980?w=700&h=850&fit=crop" alt="Smiling traveler outdoors" />
+    </div>
+    <div class="reveal">
+      <span class="overline">Traveler stories</span>
+      <div class="stars" style="margin-top:1.2rem;">
+        <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+      </div>
+      <blockquote>"DeeLabs planned every detail so carefully that all I had to do was be present. It was the first trip in years where I felt like a traveler, not a tourist."</blockquote>
+      <div class="quote-attr">
+        <div class="who">
+          <strong>Mara Ellison</strong>
+          <span>Patagonia Traverse, 2025</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <span class="overline">Start your journey</span>
+    <h2>Where will <em>your</em> next story begin?</h2>
+    <p>Speak with a travel designer about your ideal escape. No obligation — just an honest conversation about where you'd love to go and how we can get you there.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn btn-solid"><i data-lucide="phone-call"></i> Talk to a Designer</a>
+      <a href="#destinations" class="btn btn-ghost" style="border-color:var(--cream);color:var(--cream);"><i data-lucide="book-open"></i> Browse Journeys</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">Dee<span>Labs</span><small>Tour</small></div>
+        <p>Curated travel experiences for the genuinely curious. Designed with care, guided with expertise, remembered for a lifetime.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#destinations">Featured Journeys</a></li>
+          <li><a href="#contact">Custom Trips</a></li>
+          <li><a href="#stories">Traveler Stories</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">Our Approach</a></li>
+          <li><a href="#why">Why DeeLabs</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#">Booking Terms</a></li>
+          <li><a href="#">Travel Insurance</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 DeeLabs Tour. All rights reserved.</span>
+      <span>Crafted for the curious traveler.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'))
+  );
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Icons
+  lucide.createIcons();
+</script>
+</body>
+</html>
